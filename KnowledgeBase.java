@@ -60,16 +60,31 @@ public class KnowledgeBase {
 					compteur.replace(rules.getRule(i),(int)compteur.get(rules.getRule(i)) - 1);
 					if ((int)compteur.get(rules.getRule(i)) == 0) {
 						Atom c=rules.getRule(i).getConclusion();
-							if (!facts.getAtoms().contains(c) && !atraiter.contains(c)) {
-								factssat.addAtomWithoutCheck(c);
-								atraiter.add(c);
-							}
+						if (!facts.getAtoms().contains(c) && !atraiter.contains(c)) {
+							factssat.addAtomWithoutCheck(c);
+							atraiter.add(c);
+						}
 					}
 				}
 			}
 		}
 	}
 
+	public boolean BackwardChaining(Atom q,ArrayList<Atom> l) {
+		if (facts.belongsAtom(q)) {return true;}
+		for(int i=0;i < rules.size();i++) {
+			for(int j=0; j < rules.getRule(i).getHypothesis().size(); j++) {
+				if (l.contains(rules.getRule(i).getHypothesis().get(j))) {return false;}
+				else{int k=1;
+				while (k<rules.getRule(i).getHypothesis().size() && BackwardChaining(rules.getRule(i).getHypothesis().get(j),l)) {
+					k++;
+				}
+				if (k > rules.getRule(i).getHypothesis().size()) return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	public FactBase getFacts()
 	{
