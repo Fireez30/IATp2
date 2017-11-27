@@ -1,4 +1,3 @@
-package tp2.src.structure;
 
 import java.util.*;
 

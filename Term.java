@@ -1,4 +1,3 @@
-package tp2.src.structure;
 
 public class Term
 {

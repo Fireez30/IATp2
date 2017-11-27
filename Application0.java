@@ -1,6 +1,3 @@
-package tp2.src.structure;
-
-
 
 public class Application0 {
 	public static void main(String[] args)

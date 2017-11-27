@@ -1,6 +1,7 @@
-package tp2.src.structure;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class main {
 
@@ -22,10 +23,17 @@ public class main {
 		
 		System.out.println(r1.toString());*/
 		
-		KnowledgeBase k=new KnowledgeBase("C:\\Users\\Fireez\\Desktop\\Master\\eclipse\\reunion.txt");
-		System.out.println(k.toString());
-		k.ForwardChaining();
-		System.out.println(k.toString());
+		KnowledgeBase k = new KnowledgeBase("src/reunion.txt");
+		
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Atom :");
+
+		String str = sc.nextLine();
+		
+		Atom at = new Atom(str);
+				
+		System.out.println(k.BackwardChaining(new Atom(str), new ArrayList<Atom>()));		
 	}
 
 }
